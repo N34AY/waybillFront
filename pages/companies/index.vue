@@ -1,45 +1,77 @@
 <template>
-  <DataTable
-    :headers="headers"
-    addButtonText="Добавить компанию"
-    basePath="companies"
-    :dataOrder="dataOrder"
-    object="companies"
-  />
+  <CompaniesTable :headers="headers" :items="items" />
 </template>
 
 <script>
-import DataTable from '~/components/DataTable.vue'
+import CompaniesTable from '~/components/CompaniesTable'
 
 export default {
   components: {
-    DataTable,
+    CompaniesTable,
   },
 
   data: function data() {
     return {
       headers: [
-        'Название',
-        'Телефон',
-        'Почта',
-        'Описание',
-        'Создана',
-        'Изменена',
+        {
+          text: 'Название',
+          align: 'start',
+          sortable: true,
+          value: 'name',
+        },
+        {
+          text: 'Телефон',
+          value: 'phone',
+        },
+        {
+          text: 'Email',
+          value: 'email',
+        },
+        {
+          text: 'Создан',
+          value: 'created_at',
+        },
+        {
+          text: 'Изменен',
+          value: 'updated_at',
+        },
+        {
+          text: 'Действия',
+          value: 'actions',
+        },
       ],
-      dataOrder: [
-        'name',
-        'phone',
-        'email',
-        'description',
-        'created_at',
-        'updated_at',
-      ],
+      items: [],
     }
   },
+
   head() {
     return {
       title: 'Компании',
     }
   },
+
+  methods: {
+    getData: async function () {
+      try {
+        const response = await this.$axios.$get(`/companies/`)
+        this.items = response.companies
+      } catch (error) {
+        alert(error)
+      }
+    },
+
+    remove: async function (id) {
+      try {
+        await this.$axios.$delete(`/${this.basePath}/delete/${id}`)
+        this.getData()
+      } catch (error) {
+        alert(error)
+      }
+    }
+  },
+
+  created() {
+    this.getData()
+  }
 }
 </script>

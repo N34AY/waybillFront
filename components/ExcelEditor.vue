@@ -1,5 +1,5 @@
 <template>
-  <v-sheet>
+  <v-sheet class="mb-10">
     <hot-table :settings="settings" :data="sheet">
       <hot-column
         v-for="(column, index) in columns"
@@ -8,7 +8,6 @@
         :data="column.data"
       />
     </hot-table>
-    <v-btn @click="calculate">fdfs</v-btn>
   </v-sheet>
 </template>
 
@@ -69,12 +68,7 @@ export default {
 
   methods: {
     calculate: function () {
-      let rows = document.getElementsByTagName('tr')
-      rows.forEach(function (row) {
-        console.log(row);
-        row.children[5].innerHTML = 'fdfd'
-        return
-      })
+
     },
   },
 }

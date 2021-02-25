@@ -57,14 +57,9 @@ export default {
           to: '/companies',
         },
         {
-          icon: 'mdi-view-day-outline',
-          title: 'Списки',
-          to: '/lists',
-        },
-        {
           icon: 'mdi-alarm-panel-outline',
           title: 'Накладные',
-          to: '/waybills',
+          to: '/lists',
         },
       ],
       miniVariant: false,

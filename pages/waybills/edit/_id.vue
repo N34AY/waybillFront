@@ -85,7 +85,7 @@ export default {
           sheet: this.sheet,
         }
         await this.$axios.$post(`/waybills/edit/${this.$route.params.id}`, body)
-        this.$router.push('/waybills')
+        this.$router.push('/lists/')
       } catch (error) {
         alert(error)
       }

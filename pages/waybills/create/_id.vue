@@ -64,21 +64,31 @@ export default {
   methods: {
     get: async function () {
       try {
-        const response = await this.$axios.$get('/lists')
+        const response = await this.$axios.$get('/lists/')
         this.lists = response.lists
       } catch (error) {
         alert(error)
       }
     },
+
+    getList: async function () {
+      try {
+        const response = await this.$axios.$get(`/lists/get/${this.$route.params.id}`)
+        this.lst = response.list
+      } catch (error) {
+        alert(error)
+      }
+    },
+
     send: async function () {
       try {
         const body = {
           name: this.name,
-          lst: this.lst,
+          lst: this.lst.id,
           sheet: this.sheet,
         }
         await this.$axios.$post('/waybills/create', body)
-        this.$router.push('/waybills')
+        this.$router.push('/lists/')
       } catch (error) {
         alert(error)
       }
@@ -87,6 +97,7 @@ export default {
 
   beforeMount: async function () {
     await this.get()
+		await this.getList()
   },
 }
 </script>

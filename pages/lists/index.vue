@@ -1,31 +1,84 @@
 <template>
-  <DataTable
-    :headers="headers"
-    addButtonText="Добавить список"
-    basePath="lists"
-    :dataOrder="dataOrder"
-    object="lists"
-  />
+  <ListsTable :headers="headers" :subHeaders="subHeaders" :items="items" @refresh="getData" />
 </template>
 
 <script>
-import DataTable from '~/components/DataTable.vue'
+import ListsTable from '~/components/ListsTable'
 
 export default {
   components: {
-    DataTable,
+    ListsTable,
   },
 
   data: function data() {
     return {
-      headers: ['Название', 'Компания', 'Создан', 'Изменен'],
-      dataOrder: ['name', 'company', 'created_at', 'updated_at'],
+      headers: [
+        {
+          text: 'Название',
+          align: 'start',
+          sortable: true,
+          value: 'name',
+        },
+        {
+          text: 'Компания',
+          value: 'company.name',
+        },
+        {
+          text: 'Создан',
+          value: 'created_at',
+        },
+        {
+          text: 'Изменен',
+          value: 'updated_at',
+        },
+        {
+          text: 'Действия',
+          value: 'actions',
+        },
+      ],
+      subHeaders: [
+        {
+          text: 'Название',
+          align: 'start',
+          sortable: true,
+          value: 'name',
+        },
+        {
+          text: 'Создан',
+          value: 'created_at',
+        },
+        {
+          text: 'Изменен',
+          value: 'updated_at',
+        },
+        {
+          text: 'Действия',
+          value: 'actions',
+        },
+      ],
+      items: [],
     }
   },
+
   head() {
     return {
       title: 'Компании',
     }
   },
+
+  methods: {
+    getData: async function () {
+      try {
+        const response = await this.$axios.$get(`/lists/`)
+        this.items = response.lists
+      } catch (error) {
+        alert(error)
+      }
+    },
+  },
+
+  created() {
+    this.getData()
+  }
 }
 </script>
