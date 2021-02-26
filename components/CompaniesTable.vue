@@ -71,7 +71,7 @@ export default {
     remove: async function (id) {
       try {
         await this.$axios.$delete(`/companies/delete/${id}`)
-        this.getData()
+        this.$emit('refresh')
       } catch (error) {
         alert(error)
       }

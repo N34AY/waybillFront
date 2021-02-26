@@ -1,5 +1,5 @@
 <template>
-  <CompaniesTable :headers="headers" :items="items" />
+  <CompaniesTable :headers="headers" :items="items"  @refresh="getData"/>
 </template>
 
 <script>
