@@ -11,6 +11,7 @@
   "dependencies": {
     "@handsontable/vue": "^5.1.0",
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/dotenv": "^1.4.1",
     "core-js": "^3.8.3",
     "handsontable": "^8.3.0",
     "nuxt": "^2.14.12",

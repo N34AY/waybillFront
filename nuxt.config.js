@@ -2,8 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   server: {
-    host: '127.0.0.1',
-    port: 8080
+    host: process.env.HOST,
+    port: process.env.PORT
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -13,7 +13,7 @@ export default {
     titleTemplate: '%s - Waybill',
     title: 'Waybill',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
@@ -42,6 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,7 +53,7 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: process.env.BASE_URL,
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
