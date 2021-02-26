@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto" max-width="500">
     <v-container fluid>
-      <v-row dense>
+      <v-row dense justify="center" align="center">
         <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
           <v-card :to="card.link" :color="card.color" dark height="200px">
             <v-card-title v-text="card.title"></v-card-title>
