@@ -66,5 +66,16 @@ export default {
       search: '',
     }
   },
+
+  methods: {
+    remove: async function (id) {
+      try {
+        await this.$axios.$delete(`/companies/delete/${id}`)
+        this.getData()
+      } catch (error) {
+        alert(error)
+      }
+    }
+  }
 }
 </script>

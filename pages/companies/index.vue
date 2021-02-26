@@ -58,15 +58,6 @@ export default {
       } catch (error) {
         alert(error)
       }
-    },
-
-    remove: async function (id) {
-      try {
-        await this.$axios.$delete(`/${this.basePath}/delete/${id}`)
-        this.getData()
-      } catch (error) {
-        alert(error)
-      }
     }
   },
 
